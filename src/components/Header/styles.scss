@@ -1,0 +1,30 @@
+#page-header {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-bottom: 0 !important;
+  
+  .navbar-brand {
+    display: flex !important;
+
+    img {
+      align-self: center;
+      height: 33px;
+    }
+
+    h3 {
+      color: #203354;
+      margin-bottom: 0;
+      letter-spacing: 0.9px;
+    }
+  }
+  
+  .navbar-collapse {
+    display: flex !important;
+    justify-content: space-between;
+
+    a:hover {
+      color: #007bff;
+    }
+  }
+}

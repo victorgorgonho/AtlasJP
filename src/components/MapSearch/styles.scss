@@ -1,0 +1,64 @@
+#map {
+  width: 100vw;
+  height: 100vh;
+  
+  .content {
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    main {
+      width: 80%;
+      height: 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 60px 0;
+    
+      h1 {
+        font-size: 54px;
+        color: var(--title-color);
+      }
+    }
+
+    .content-map {
+      width: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+
+      .leaflet-container {
+        width: 600px;
+        height: 400px;
+      }
+    }
+  }
+}
+
+@media(max-width: 900px) {
+  #map .content {
+    align-items: center;
+    text-align: center;
+  }
+
+  #map .content header {
+    margin: 48px auto 0;
+  }
+
+  #map .content main {
+    align-items: center;
+  }
+
+  #map .content main h1 {
+    font-size: 42px;
+  }
+
+  #map .content main p {
+    font-size: 24px;
+  }
+}
