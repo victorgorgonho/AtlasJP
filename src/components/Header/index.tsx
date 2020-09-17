@@ -7,7 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import ModalLogin from '../ModalLogin';
 
-import logo from '../../images/logo2.png';
+import logo from '../../images/png/logo2.png';
 
 const Header: React.FC = () => {
   const [show, setShow] = useState(false);

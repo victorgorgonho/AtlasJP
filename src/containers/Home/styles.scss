@@ -1,5 +1,15 @@
 .main {
   height: 100vh;
 
-  /* background: url('../../images/bg.png') no-repeat; */
+  overflow: hidden;
+  overflow-y: scroll; 
+  scroll-snap-type: y mandatory;
+
+  &::-webkit-scrollbar {
+		width: 0.25rem;
+	}
+
+  &::-webkit-scrollbar-thumb {
+		background: var(--title-color);
+	}
 }

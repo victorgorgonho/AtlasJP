@@ -3,7 +3,7 @@ import { FiLogIn } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import './styles.scss'
-import logo from '../../images/logo2.png';
+import logo from '../../images/png/logo2.png';
 
 const Welcome = () => {
   return (
