@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './styles.scss';
 
 import L from 'leaflet';
-import { Map, TileLayer, Marker } from 'react-leaflet';
+import { Map, TileLayer } from 'react-leaflet';
 import Form from 'react-bootstrap/Form';
 import data from '../../data/neighborhoods.json';
+
+import { useDispatch } from 'react-redux';
+import { createNeighborhood } from '../../store/ducks/neighborhood/actions';
 
 interface Neighborhoods {
   zone: number;
@@ -15,15 +18,17 @@ interface Neighborhoods {
 interface Neighborhood {
   id: number;
   name: string;
+  image_url: string;
   location: [number, number];
 }
 
 const MapSearch: React.FC = () => {
-  const [initialPosition, setInitialPosition] = useState<[number, number]>([-7.1402162, -34.8881228]);
-  const [selectedPosition, setSelectedPosition] = useState<any>([]);
-  const [neighborhoods, setNeighborhoods] = useState<Neighborhoods[]>(data.neighborhoods);
-  const [zone, setZone] = useState(0);
+  const dispatch = useDispatch();
+  const neighborhoods: Neighborhoods[] = data.neighborhoods;
+  const initialPosition: [number, number] = [-7.1402162, -34.8881228];
 
+  const [selectedNeighborhood, setSelectedNeighborhood] = useState<Neighborhood[]>([]);
+  const [zone, setZone] = useState(0);
   const [mapRef, setMapRef] = useState();
   const [layerGroup, setLayerGroup] = useState();
 
@@ -34,25 +39,22 @@ const MapSearch: React.FC = () => {
   const search = () => {
     neighborhoods.map((item: Neighborhoods) => {
       if (Number(zone) === item.zone) {
-        setSelectedPosition(item.neighborhood);
-        console.log(selectedPosition);
+        setSelectedNeighborhood(item.neighborhood);
       } else if (Number(zone) === 0) {
-        setSelectedPosition([]);
+        setSelectedNeighborhood([]);
       }
     })
   }
 
   useEffect(() => {
-    if (selectedPosition)
+    if (selectedNeighborhood)
       addMarkersToMap();
 
-    console.log('mapRef1: ', mapRef);
-    console.log('layerGroup1: ', layerGroup);
     if (mapRef && !layerGroup) {
       const newLayerGroup = L.layerGroup().addTo(mapRef as any);
       setLayerGroup(newLayerGroup as any);
     }
-  }, [selectedPosition, mapRef])
+  }, [selectedNeighborhood, mapRef])
 
   const setLeafletMapRef = (map: any) => setMapRef(map && map.leafletElement);
 
@@ -60,17 +62,23 @@ const MapSearch: React.FC = () => {
     if (layerGroup)
       layerGroup.clearLayers();
 
-    selectedPosition.map((mark: Neighborhood) => {
+    selectedNeighborhood.map((mark: Neighborhood) => {
       const marker = L.marker(mark.location).bindPopup(mark.name);
 
       marker.on('mouseover', function (e) {
         marker.openPopup();
       });
-      /* marker.on('mouseout', function (e) {
+      marker.on('mouseout', function (e) {
         marker.closePopup();
-      }); */
+      });
       marker.on('click', function (e) {
-        console.log('clickado');
+        dispatch(createNeighborhood({ neighborhood: mark }));
+        localStorage.setItem('@AtlasJP/neighborhood', JSON.stringify(mark));
+
+        const nextPage = document.querySelector('#message');
+
+        if (nextPage)
+          nextPage.scrollIntoView({ behavior: 'smooth' });
       });
 
       layerGroup.addLayer(marker);

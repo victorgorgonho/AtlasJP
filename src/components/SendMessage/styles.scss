@@ -1,0 +1,114 @@
+#message {
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: center;
+  
+  .main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .main-header {
+      display: flex;
+      width: 100%;
+      height: 15%;
+
+      main {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 4vh 11.5vw 0 11.5vw;
+      
+        h1 {
+          text-align: left;
+          font-size: 40px;
+          color: var(--title-color);
+        }
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 85%;
+
+      .content-left {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        z-index: 2;
+
+        .content-img {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 0 0 11.5vw !important;
+
+          img {
+            width: 600px;
+            height: 400px;
+            object-fit: cover;
+          }
+
+          #no-img {
+            width: 400px;
+            height: 400px;
+            object-fit: contain;
+          }
+        }
+        
+        .form-group {
+          width: 100% !important;
+          height: 100% !important;
+          padding: 0 0 0 11.5vw !important;
+  
+          .form-label {
+            font-size: 24px !important;
+            margin-top: 24px !important;
+            line-height: 38px !important;
+            text-align: justify !important;
+          }
+        }
+      }
+      
+      .content-right {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 15%;
+        z-index: 1;
+  
+        img {
+          width: 700px;
+          height: 700px;
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 900px) {
+  #message .content {
+    align-items: center;
+    text-align: center;
+  }
+
+  #message .content header {
+    margin: 48px auto 0;
+  }
+
+  #message .content main {
+    align-items: center;
+  }
+
+  #message .content main h1 {
+    font-size: 42px;
+  }
+}

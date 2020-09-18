@@ -19,7 +19,7 @@ export interface User {
   token: string
   email: string
   name: string
- }
+}
 
 /**
  * State type
@@ -27,4 +27,4 @@ export interface User {
  */
 export interface UserState {
   user: User
-}
+}  
