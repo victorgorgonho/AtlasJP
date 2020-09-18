@@ -15,15 +15,18 @@ interface Neighborhood {
 }
 
 const SendMessage: React.FC = () => {
-  const neighborhood = useSelector((state: RootStateOrAny) => state.neighborhood.neighborhood);
+  const neighborhood: Neighborhood = useSelector((state: RootStateOrAny) => state.neighborhood.neighborhood);
 
   return (
     <div id="message">
       <div className="main">
         <div className="main-header">
           <main>
-            <h1>{`Você selecionou o bairro ${neighborhood ? neighborhood.name : "ops"}`}</h1>
-            {/* ` */}
+            {neighborhood.name !== '' ?
+              <h1>{`Você selecionou ${neighborhood.name}`}</h1>
+              :
+              <h1>Por favor, selecione um bairro no mapa acima para deixar seu feedback.</h1>
+            }
           </main>
         </div>
         <div className="content">
@@ -36,16 +39,22 @@ const SendMessage: React.FC = () => {
                   <img id="no-img" src={Question} alt="Bairro não selecionado" />
               }
             </div>
-            <Form>
-              <Form.Group controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Que feedback gostaria de deixar sobre o bairro?</Form.Label>
-                <Form.Control as="textarea" />
-              </Form.Group>
-            </Form>
+            {neighborhood.name !== '' &&
+              <Form>
+                <Form.Group controlId="exampleForm.ControlTextarea1">
+                  <Form.Label>Que feedback gostaria de deixar sobre o bairro?</Form.Label>
+                  <Form.Control as="textarea" />
+                </Form.Group>
+              </Form>
+            }
+
           </div>
-          <div className="content-right">
-            <img src={Map} alt="Map" />
-          </div>
+
+          {neighborhood.name !== '' &&
+            <div className="content-right">
+              <img src={Map} alt="Map" />
+            </div>
+          }
         </div>
       </div>
     </div>
