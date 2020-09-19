@@ -33,8 +33,21 @@ const MapSearch: React.FC = () => {
   const [layerGroup, setLayerGroup] = useState();
 
   useEffect(() => {
+    localStorage.setItem('@AtlasJP/Zone', JSON.stringify(zone));
     search();
   }, [zone]);
+
+  useEffect(() => {
+    if (selectedNeighborhood)
+      addMarkersToMap();
+
+    if (mapRef && !layerGroup) {
+      const newLayerGroup = L.layerGroup().addTo(mapRef as any);
+      setLayerGroup(newLayerGroup as any);
+    }
+  }, [selectedNeighborhood, mapRef]);
+
+  const setLeafletMapRef = (map: any) => setMapRef(map && map.leafletElement);
 
   const search = () => {
     neighborhoods.map((item: Neighborhoods) => {
@@ -45,18 +58,6 @@ const MapSearch: React.FC = () => {
       }
     })
   }
-
-  useEffect(() => {
-    if (selectedNeighborhood)
-      addMarkersToMap();
-
-    if (mapRef && !layerGroup) {
-      const newLayerGroup = L.layerGroup().addTo(mapRef as any);
-      setLayerGroup(newLayerGroup as any);
-    }
-  }, [selectedNeighborhood, mapRef])
-
-  const setLeafletMapRef = (map: any) => setMapRef(map && map.leafletElement);
 
   const addMarkersToMap = () => {
     if (layerGroup)
@@ -75,10 +76,7 @@ const MapSearch: React.FC = () => {
         dispatch(createNeighborhood({ neighborhood: mark }));
         localStorage.setItem('@AtlasJP/neighborhood', JSON.stringify(mark));
 
-        const nextPage = document.querySelector('#message');
-
-        if (nextPage)
-          nextPage.scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('#message')?.scrollIntoView({ behavior: 'smooth' });
       });
 
       layerGroup.addLayer(marker);

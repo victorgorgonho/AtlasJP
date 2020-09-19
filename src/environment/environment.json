@@ -1,7 +1,7 @@
 {
   "name": "dev",
-  "REACT_APP_LOCAL_STORAGE_USER": "atdTest",
-  "headers": { 
+  "REACT_APP_LOCAL_STORAGE_USER": "@AtlasJP/User",
+  "headers": {
     "Content-type": "application/json"
   }
 }

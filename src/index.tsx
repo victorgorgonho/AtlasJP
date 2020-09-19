@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './containers/App';
 
+import { SnackbarProvider } from 'notistack';
+
 import store from './store';
 
 import './common.scss';
@@ -10,7 +12,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <SnackbarProvider maxSnack={3}>
+      <App />
+    </SnackbarProvider>
   </Provider>,
   document.getElementById('root'),
 );

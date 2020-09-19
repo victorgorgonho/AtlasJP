@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { UserState, UserTypes } from './types';
+import { environment } from '../../../environment/environment';
 
 const INITIAL_STATE: UserState = {
   user: {
@@ -15,14 +16,16 @@ const reducer: Reducer<UserState> = (
   action,
 ) => {
   const updatedUserState = state;
+  const address = environment.REACT_APP_LOCAL_STORAGE_USER;
 
   switch (action.type) {
     case UserTypes.UPDATE_USER:
       updatedUserState.user = action.data.user;
-      // localStorage.setItem(
-      //   environment.REACT_APP_LOCAL_STORAGE_USER_AUTH,
-      //   JSON.stringify(),
-      // );
+
+      localStorage.setItem(
+        address,
+        JSON.stringify(updatedUserState.user),
+      );
 
       return { ...state, ...updatedUserState };
 
