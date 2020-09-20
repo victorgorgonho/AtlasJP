@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './styles.scss';
 
@@ -14,6 +14,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ModalFeedback from '../ModalFeedback';
 import ModalNotAllowed from '../ModalNotAllowed';
+import Footer from '../Footer';
 
 const SendMessage: React.FC = () => {
   const neighborhood: Neighborhood = useSelector((state: RootStateOrAny) => state.neighborhood.neighborhood);
@@ -22,6 +23,10 @@ const SendMessage: React.FC = () => {
   const [message, setMessage] = useState('');
   const [showFeedback, setShowFeedback] = useState(false);
   const [showForbidden, setShowForbidden] = useState(false);
+
+  useEffect(() => {
+    setMessage('');
+  }, [neighborhood]);
 
   const handleShowFeedback = () => setShowFeedback(true);
   const handleCloseFeedback = () => setShowFeedback(false);
@@ -92,6 +97,9 @@ const SendMessage: React.FC = () => {
               <img src={Map} alt="Map" />
             </div>
           }
+        </div>
+        <div className="footer">
+          <Footer />
         </div>
       </div>
       <ModalFeedback message={message} value={showFeedback} handleClose={handleCloseFeedback} />

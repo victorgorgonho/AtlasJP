@@ -1,3 +1,5 @@
+@import "../../mixin.scss";
+
 #homepage {
   width: 100vw;
   height: 100vh;
@@ -29,13 +31,13 @@
   
         h1 {
           font-size: 54px;
-          color: var(--title-color);
+          color: $title;
           font-family: Ubuntu !important;
         }
   
         p {
           font-size: 24px;
-          color: #243336a9;
+          color: $blue_dark;
           font-weight: 400;
           margin-top: 24px;
           line-height: 38px;

@@ -4,8 +4,8 @@
  * @REMOVE_USER remove user infos
  */
 export enum UserTypes {
-  UPDATE_USER = '@constructionCompany/HANDLE_USER',
-  REMOVE_USER = '@constructionCompany/REMOVE_USER',
+  UPDATE_USER = '@AtlasJP/HANDLE_USER',
+  REMOVE_USER = '@AtlasJP/REMOVE_USER',
 }
 
 /**
@@ -23,7 +23,7 @@ export interface User {
 
 /**
  * State type
- * @data : the constructionCompany
+ * @data : the AtlasJP
  */
 export interface UserState {
   user: User

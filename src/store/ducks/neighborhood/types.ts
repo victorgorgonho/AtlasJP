@@ -3,7 +3,7 @@
  * @CREATE_NEIGHBORHOOD Set Neighborhood
  */
 export enum NeighborhoodTypes {
-  CREATE_NEIGHBORHOOD = '@constructionCompany/CREATE_NEIGHBORHOOD',
+  CREATE_NEIGHBORHOOD = '@AtlasJP/CREATE_NEIGHBORHOOD',
 }
 
 export interface Neighborhood {
@@ -15,7 +15,7 @@ export interface Neighborhood {
 
 /**
  * State type
- * @data : the constructionCompany
+ * @data : the AtlasJP
  */
 export interface NeighborhoodState {
   neighborhood: Neighborhood

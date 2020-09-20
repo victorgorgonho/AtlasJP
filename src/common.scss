@@ -1,9 +1,5 @@
 @import "./mixin";
 
-//font-family: 'Montserrat', sans-serif;
-//font-family: 'Futura';
-
-
 /* Your default CSS. */
 :root {
   --primary-color: #6C63FF;
@@ -70,14 +66,14 @@ body {
 
 	background: #F0F0F5;
   -webkit-font-smoothing: antialiased;
-  color: var(--text-color);
+  color: $description;
 
 	&::-webkit-scrollbar {
 		width: 0.25rem;
 	}
 
   &::-webkit-scrollbar-thumb {
-		background: var(--title-color);
+		background: $title;
 	}
 
 	@media only screen and (min-width: 1000px) {}
@@ -93,6 +89,6 @@ h3,
 h4,
 h5,
 h6 {
-	color: var(--title-color);
+	color: $title;
   font-family: Ubuntu;
 }

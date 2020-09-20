@@ -1,8 +1,10 @@
+@import "../../mixin.scss";
+
 .modal-content {
   .modal-header {
     .modal-title.h4 {
       font-size: 24px !important;
-      color: var(--title-color) !important;
+      color: $title !important;
       font-weight: 600 !important;
       line-height: 38px !important;
     }
@@ -17,7 +19,7 @@
     .form-group {
       .form-label {
         font-size: 16px !important;
-        color: var(--title-color) !important;
+        color: $title !important;
         font-weight: 600 !important;
       }
 
@@ -25,7 +27,7 @@
         box-shadow: none;
 
         &:active, &:focus {
-          border-color: var(--title-color);
+          border-color: $title;
         }
       }
     }
@@ -35,26 +37,26 @@
     justify-content: space-between !important;
 
     .btn-outline-danger {
-      color: #777;
-      border-color: #777;
+      color: $gray;
+      border-color: $gray;
       box-shadow: none !important;
 
       &:hover, &:active {
-        color: #fff;
-        background-color: #777;
-        border-color: #777;
+        color: $white;
+        background-color: $gray;
+        border-color: $gray;
       }
     }
 
     .btn-outline-primary {
-      color: var(--title-color);
-      border-color: var(--title-color);
+      color: $title;
+      border-color: $title;
       box-shadow: none !important;
 
       &:hover, &:active {
-        color: #fff;
-        background-color: var(--title-color);
-        border-color: var(--title-color);
+        color: $white;
+        background-color: $title;
+        border-color: $title;
       }
     }
   }

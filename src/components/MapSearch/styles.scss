@@ -1,3 +1,5 @@
+@import "../../mixin.scss";
+
 #map {
   width: 100vw;
   height: 100vh;
@@ -25,7 +27,7 @@
       h1 {
         text-align: left;
         font-size: 40px;
-        color: var(--title-color);
+        color: $title;
       }
     }
 
@@ -46,7 +48,7 @@
           box-shadow: none;
 
           &:active, &:focus {
-            border-color: var(--title-color);
+            border-color: $title;
           }
         }
       }

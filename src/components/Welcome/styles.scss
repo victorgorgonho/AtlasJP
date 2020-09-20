@@ -1,3 +1,5 @@
+@import "../../mixin.scss";
+
 #page-home {
   height: 100vh;
 
@@ -41,12 +43,12 @@
 
       h1 {
         font-size: 54px;
-        color: var(--title-color);
+        color: $title;
       }
 
       p {
         font-size: 24px;
-        color: #243336a9;
+        color: $blue_dark;
         font-weight: 400;
         margin-top: 24px;
         line-height: 38px;
@@ -56,7 +58,7 @@
         width: 100%;
         max-width: 360px;
         height: 72px;
-        background: var(--primary-color);
+        background: $purple_button;
         border-radius: 8px;
         text-decoration: none;
       
@@ -78,7 +80,7 @@
           transition: background-color 0.2s;
 
           svg {
-            color: #FFF;
+            color: $white;
             width: 20px;
             height: 20px;
           }
@@ -87,11 +89,11 @@
         strong {
           flex: 1;
           text-align: center;
-          color: #FFF;
+          color: $white;
         }
 
         &:hover {
-          background: #6b63ffc2;
+          background: $purple_button_hover;
         }
       }
     }

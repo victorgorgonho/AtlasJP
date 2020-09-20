@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.scss';
 
-import L from 'leaflet';
+import L, { LayerGroup } from 'leaflet';
 import { Map, TileLayer } from 'react-leaflet';
 
 import data from '../../data/neighborhoods.json';
@@ -23,7 +23,7 @@ const MapSearch: React.FC = () => {
 
   const [zone, setZone] = useState(0);
   const [mapRef, setMapRef] = useState();
-  const [layerGroup, setLayerGroup] = useState();
+  const [layerGroup, setLayerGroup] = useState<LayerGroup>();
 
   useEffect(() => {
     localStorage.setItem('@AtlasJP/Zone', JSON.stringify(zone));
@@ -72,7 +72,7 @@ const MapSearch: React.FC = () => {
         document.querySelector('#message')?.scrollIntoView({ behavior: 'smooth' });
       });
 
-      layerGroup.addLayer(marker);
+      layerGroup!.addLayer(marker);
     });
   }
 

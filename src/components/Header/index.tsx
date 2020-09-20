@@ -27,6 +27,7 @@ const Header: React.FC = () => {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const scrollToMap = () => document.querySelector('#map')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToContactUs = () => document.querySelector('#footer')?.scrollIntoView({ behavior: 'smooth' });
 
   useEffect(() => {
     const response = isAuthenticated();
@@ -52,7 +53,7 @@ const Header: React.FC = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="content">
             <Nav.Link onClick={scrollToMap}>Mapa</Nav.Link>
-            <Nav.Link>Contate-nos</Nav.Link>
+            <Nav.Link onClick={scrollToContactUs}>Contate-nos</Nav.Link>
           </Nav>
           {isLogged ?
             <div className="profile" onClick={logout}>
