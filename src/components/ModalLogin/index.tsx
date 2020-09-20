@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+import './styles.scss';
 
 import AuthIMG from '../../images/svg/authentication.svg';
+
+import { checkAuth } from '../../services/validation';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { updateUser } from '../../store/ducks/user/actions';
 
-import './styles.scss';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
 interface ModalProps {
   value: boolean,
@@ -27,13 +29,25 @@ const ModalLogin: React.FC<ModalProps> = (props) => {
     const user = {
       id: '1',
       email: email.trim(),
-      name: 'Victor Gorgonho',
+      name: 'Victor',
       token: 'Logado'
-    }
+    };
 
-    if (email === 'josegorgonho@eng.ci.ufpb.br' && password === 'teste123') {
+    const isEmailValid = checkAuth('email', email.trim());
+    const isValidated = checkAuth('auth', {
+      email: email.trim(),
+      password
+    });
+
+    if (email === '') {
+      enqueueSnackbar('Preencha o e-mail!', { variant: "error" });
+    } else if (password === '') {
+      enqueueSnackbar('Preencha a senha!', { variant: "error" });
+    } else if (!isEmailValid) {
+      enqueueSnackbar('E-mail inválido!', { variant: "error" });
+    } else if (isValidated) {
       dispatch(updateUser({ user }));
-      enqueueSnackbar('Usuário logado!', { variant: "success" });
+      enqueueSnackbar('Usuário logado com sucesso!', { variant: "success" });
       props.handleClose();
     } else {
       setEmail('');
@@ -43,7 +57,7 @@ const ModalLogin: React.FC<ModalProps> = (props) => {
   };
 
   return (
-    <Modal show={props.value} onHide={props.handleClose}>
+    <Modal show={props.value} onHide={props.handleClose} className="modal-login">
       <Modal.Header closeButton>
         <Modal.Title>Faça login para acessar sua conta.</Modal.Title>
       </Modal.Header>

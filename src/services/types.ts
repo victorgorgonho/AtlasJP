@@ -1,3 +1,8 @@
+export interface Neighborhoods {
+  zone: number;
+  neighborhood: any;
+}
+
 export interface Example {
   id: string;
   options: Option[];

@@ -2,6 +2,14 @@ import { Reducer } from 'redux';
 import { UserState, UserTypes } from './types';
 import { environment } from '../../../environment/environment';
 
+const {
+  REACT_APP_LOCAL_STORAGE_USER,
+} = environment;
+
+const LAST_USER: UserState = {
+  user: JSON.parse(localStorage.getItem(REACT_APP_LOCAL_STORAGE_USER) as string)
+}
+
 const INITIAL_STATE: UserState = {
   user: {
     id: '',
@@ -12,7 +20,7 @@ const INITIAL_STATE: UserState = {
 };
 
 const reducer: Reducer<UserState> = (
-  state = INITIAL_STATE,
+  state = LAST_USER ? LAST_USER : INITIAL_STATE,
   action,
 ) => {
   const updatedUserState = state;
@@ -30,9 +38,9 @@ const reducer: Reducer<UserState> = (
       return { ...state, ...updatedUserState };
 
     case UserTypes.REMOVE_USER:
-      // localStorage.removeItem(
-      //   environment.REACT_APP_LOCAL_STORAGE_USER_AUTH,
-      // );
+      localStorage.removeItem(
+        address,
+      );
       return { ...state, ...INITIAL_STATE };
 
     default:

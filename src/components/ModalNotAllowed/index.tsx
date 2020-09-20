@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import ModalLogin from '../ModalLogin';
-
-import AuthIMG from '../../images/svg/authentication.svg';
-
 import './styles.scss';
+
+import NotAuthenticated from '../../images/svg/not-authenticated.svg';
+
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import ModalLogin from '../ModalLogin';
 
 interface ModalProps {
   value: boolean,
@@ -14,25 +14,35 @@ interface ModalProps {
 };
 
 const ModalNotAllowed: React.FC<ModalProps> = (props) => {
+  const [showLogin, setShowLogin] = useState(false);
+
+  const handleShowLogin = () => setShowLogin(true);
+  const handleCloseLogin = () => setShowLogin(false);
+
+  const handleClick = () => {
+    props.handleClose();
+    handleShowLogin();
+  }
+
   return (
     <>
-      <Modal show={props.value} onHide={props.handleClose}>
+      <Modal show={props.value} onHide={props.handleClose} className="modal-not-allowed">
         <Modal.Header closeButton>
-          <Modal.Title>Faça login para acessar sua conta.</Modal.Title>
+          <Modal.Title>Você precisa estar logado para comentar.</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <img src={AuthIMG} alt="Login" />
+          <img src={NotAuthenticated} alt="Faça login" />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-danger" onClick={props.handleClose}>
             Voltar
-        </Button>
-          <Button variant="outline-primary">
+          </Button>
+          <Button variant="outline-primary" onClick={handleClick}>
             Fazer login
-        </Button>
+          </Button>
         </Modal.Footer>
       </Modal>
-      <ModalLogin value={false} handleClose={() => { }} />
+      <ModalLogin value={showLogin} handleClose={handleCloseLogin} />
     </>
   );
 }

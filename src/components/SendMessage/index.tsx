@@ -1,39 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import './styles.scss';
+
 import Question from '../../images/svg/question.svg';
 import Map from '../../images/svg/map.svg';
+
+import { isAuthenticated } from '../../services/auth';
+import { useSelector, RootStateOrAny } from 'react-redux';
+import { useSnackbar } from 'notistack';
+import { Neighborhood } from '../../store/ducks/neighborhood/types';
+
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ModalFeedback from '../ModalFeedback';
 import ModalNotAllowed from '../ModalNotAllowed';
-import { useSnackbar } from 'notistack';
-
-import { useSelector, RootStateOrAny } from 'react-redux';
-
-interface Neighborhood {
-  id: number;
-  name: string;
-  image_url: string;
-  location: [number, number];
-}
 
 const SendMessage: React.FC = () => {
   const neighborhood: Neighborhood = useSelector((state: RootStateOrAny) => state.neighborhood.neighborhood);
-  const [show, setShow] = useState(false);
-  const [message, setMessage] = useState('');
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const [message, setMessage] = useState('');
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [showForbidden, setShowForbidden] = useState(false);
+
+  const handleShowFeedback = () => setShowFeedback(true);
+  const handleCloseFeedback = () => setShowFeedback(false);
+
+  const handleShowForbidden = () => setShowForbidden(true);
+  const handleCloseForbidden = () => setShowForbidden(false);
+
   const scrollToMap = () => document.querySelector('#map')?.scrollIntoView({ behavior: 'smooth' });
 
   const showModal = () => {
-    if (message !== '') {
-      handleShow();
-    } else {
+    const isLogged = isAuthenticated();
+
+    if (message !== '')
+      if (isLogged)
+        handleShowFeedback();
+      else
+        handleShowForbidden();
+    else
       enqueueSnackbar('Preencha o campo de mensagem!', { variant: 'error' });
-    }
   }
 
   return (
@@ -87,8 +94,8 @@ const SendMessage: React.FC = () => {
           }
         </div>
       </div>
-      <ModalFeedback message={message} value={show} handleClose={handleClose} />
-      {/* <ModalNotAllowed value={show} handleClose={handleClose} /> */}
+      <ModalFeedback message={message} value={showFeedback} handleClose={handleCloseFeedback} />
+      <ModalNotAllowed value={showForbidden} handleClose={handleCloseForbidden} />
     </>
   );
 }

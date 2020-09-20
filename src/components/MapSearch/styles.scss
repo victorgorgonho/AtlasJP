@@ -41,12 +41,23 @@
       .form-search {
         padding-bottom: 8px;
         width: 100%;
+
+        .form-control {
+          box-shadow: none;
+
+          &:active, &:focus {
+            border-color: var(--title-color);
+          }
+        }
       }
 
       .leaflet-container {
         width: 100%;
         height: 740px;
         border-radius: 10px;
+        -webkit-box-shadow: 6px 7px 10px 0px rgba(125,125,125,1);
+        -moz-box-shadow: 6px 7px 10px 0px rgba(125,125,125,1);
+        box-shadow: 6px 7px 10px 0px rgba(125,125,125,1);
       }
     }
   }

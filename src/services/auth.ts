@@ -10,7 +10,9 @@ const userAuth: UserState = {
 };
 
 export const isAuthenticated = () => {
-  if (userAuth.user.email === 'josegorgonho@eng.ci.ufpb.br') {
+  userAuth.user = JSON.parse(localStorage.getItem(REACT_APP_LOCAL_STORAGE_USER) as string);
+
+  if (userAuth.user && userAuth.user.email === 'josegorgonho@eng.ci.ufpb.br') {
     return true;
   }
   return false;

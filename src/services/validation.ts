@@ -9,7 +9,7 @@ export const checkPassword = (password: string, confirmPassword: string) => {
   return false;
 };
 
-export const checkAuth = (validationCase: string, value: string) => {
+export const checkAuth = (validationCase: string, value: string | any) => {
   let validation = false;
   switch (validationCase) {
     case 'email':
@@ -30,18 +30,8 @@ export const checkAuth = (validationCase: string, value: string) => {
       return true;
 
     case 'auth':
-      if (value === 'Senha Incorreta') {
+      if (value.email !== 'josegorgonho@eng.ci.ufpb.br' || value.password !== 'teste123') {
         // toast.error(value);
-        validation = false;
-        return false;
-      }
-      if (value === 'record not found') {
-        // toast.error('Email não cadastrado');
-        validation = false;
-        return false;
-      }
-      if (value === null || value === undefined) {
-        // toast.error('Cadastro não localizado');
         validation = false;
         return false;
       }

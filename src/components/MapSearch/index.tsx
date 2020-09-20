@@ -4,30 +4,23 @@ import './styles.scss';
 
 import L from 'leaflet';
 import { Map, TileLayer } from 'react-leaflet';
-import Form from 'react-bootstrap/Form';
-import data from '../../data/neighborhoods.json';
 
+import data from '../../data/neighborhoods.json';
 import { useDispatch } from 'react-redux';
 import { createNeighborhood } from '../../store/ducks/neighborhood/actions';
 
-interface Neighborhoods {
-  zone: number;
-  neighborhood: any;
-}
+import { Neighborhood } from '../../store/ducks/neighborhood/types';
+import { Neighborhoods } from '../../services/types';
 
-interface Neighborhood {
-  id: number;
-  name: string;
-  image_url: string;
-  location: [number, number];
-}
+import Form from 'react-bootstrap/Form';
 
 const MapSearch: React.FC = () => {
   const dispatch = useDispatch();
   const neighborhoods: Neighborhoods[] = data.neighborhoods;
-  const initialPosition: [number, number] = [-7.1402162, -34.8881228];
 
+  const initialPosition: [number, number] = [-7.1402162, -34.8881228];
   const [selectedNeighborhood, setSelectedNeighborhood] = useState<Neighborhood[]>([]);
+
   const [zone, setZone] = useState(0);
   const [mapRef, setMapRef] = useState();
   const [layerGroup, setLayerGroup] = useState();

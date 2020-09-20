@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
-import SendMessage from '../../images/svg/send-message.svg';
-import { useSelector, RootStateOrAny } from 'react-redux';
-
 import './styles.scss';
+
+import noUser from '../../images/png/no-user.png';
+import SendMessage from '../../images/svg/send-message.svg';
+
+import { User } from '../../store/ducks/user/types';
+import { useSelector, RootStateOrAny } from 'react-redux';
+import { Neighborhood } from '../../store/ducks/neighborhood/types';
+
+import Modal from 'react-bootstrap/Modal';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 interface ModalProps {
   message: string,
@@ -14,16 +20,11 @@ interface ModalProps {
   handleClose(): any;
 };
 
-interface Neighborhood {
-  id: number;
-  name: string;
-  image_url: string;
-  location: [number, number];
-}
-
 const ModalFeedback: React.FC<ModalProps> = (props) => {
-  const [zone, setZone] = useState('');
+  const user: User = useSelector((state: RootStateOrAny) => state.user.user);
   const neighborhood: Neighborhood = useSelector((state: RootStateOrAny) => state.neighborhood.neighborhood);
+
+  const [zone, setZone] = useState('');
 
   useEffect(() => {
     const newZone = localStorage.getItem('@AtlasJP/Zone');
@@ -38,30 +39,37 @@ const ModalFeedback: React.FC<ModalProps> = (props) => {
         <Modal.Title>Mensagem enviada!</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div className="content">
+        <div className="header">
           <img src={SendMessage} alt="Mensagem enviada" />
-          <Modal.Header />
-          <div className="text-content">
-            <h1>
-              Zone: {zone}
-              <br />
-              Bairro: {neighborhood.name} (id: {neighborhood.id})
-              <br />
-              Usuário: a
-              <br />
-              Mensagem: {props.message}
-            </h1>
-          </div>
         </div>
+        <Modal.Header />
+        <Container className="content">
+          <Col>
+            <Row noGutters>
+              <Col className="profile" xs={3}>
+                <img src={noUser} alt={user && user.name} />
+              </Col>
+              <Col xs={9}>
+                <Row className="message-header" noGutters>
+                  <h3>
+                    {user && user.name}
+                  </h3>
+                  <h3>
+                    Zona: {zone}
+                    <br />
+                    Bairro: {neighborhood.name} (id: {neighborhood.id})
+                  </h3>
+                </Row>
+              </Col>
+            </Row>
+            <Row className="message-body" noGutters>
+              <h3>
+                {props.message}
+              </h3>
+            </Row>
+          </Col>
+        </Container>
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="outline-danger" onClick={props.handleClose}>
-          Voltar
-        </Button>
-        <Button variant="outline-primary" onClick={props.handleClose}>
-          Entrar
-        </Button>
-      </Modal.Footer>
     </Modal>
   );
 }

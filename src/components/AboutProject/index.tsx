@@ -1,8 +1,9 @@
 import React from 'react';
 
+import './styles.scss';
+
 import logo from '../../images/svg/home-map.svg';
 import goDown from '../../images/gif/arrow-down.gif';
-import './styles.scss'
 
 const AboutProject: React.FC = () => {
   return (

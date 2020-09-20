@@ -11,7 +11,7 @@
 
     img {
       align-self: center;
-      height: 33px;
+      height: 30px;
     }
 
     h3 {
@@ -25,8 +25,46 @@
     display: flex !important;
     justify-content: space-between;
 
-    a:hover {
-      color: #007bff;
+    .profile {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      
+      img {
+        margin-right: 8px;
+        align-self: center;
+        height: 34px;
+      }
+
+      h3 {
+        //align-self: flex-end;
+        font-size: 16px;
+        color: #203354;
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        border-width: 1px;
+        border-radius: 12px;
+        border-color: #f2f3f4;
+        background-color: #F2F3F4;
+        opacity: 0.7 !important;
+        cursor: pointer !important;
+      }
+    }
+
+    .btn-outline-primary {
+      color: var(--title-color);
+      border-color: var(--title-color);
+      box-shadow: none !important;
+
+      &:hover, &:active {
+        color: #fff;
+        background-color: var(--title-color);
+        border-color: var(--title-color);
+      }
     }
   }
 }
