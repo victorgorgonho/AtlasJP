@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react';
 
 import './styles.scss';
 
+// Imagens
 import noUser from '../../images/png/no-user.png';
 import SendMessage from '../../images/svg/send-message.svg';
 
-import { User } from '../../store/ducks/user/types';
+// Redux
 import { useSelector, RootStateOrAny } from 'react-redux';
+
+// Tipos
+import { User } from '../../store/ducks/user/types';
 import { Neighborhood } from '../../store/ducks/neighborhood/types';
 
+// Componentes do Bootstrap
 import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -26,6 +31,7 @@ const ModalFeedback: React.FC<ModalProps> = (props) => {
 
   const [zone, setZone] = useState('');
 
+  // Busca zona no localStorage ao atualizar estado de bairro no Redux
   useEffect(() => {
     const newZone = localStorage.getItem('@AtlasJP/Zone');
 

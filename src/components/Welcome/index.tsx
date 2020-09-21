@@ -2,9 +2,13 @@ import React from 'react';
 
 import './styles.scss';
 
+// Imagens
 import logo from '../../images/png/logo2.png';
 
+// Icones
 import { FiLogIn } from 'react-icons/fi';
+
+// Componente de Link
 import { Link } from 'react-router-dom';
 
 const Welcome = () => {

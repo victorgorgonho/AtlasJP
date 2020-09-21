@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 
 import './styles.scss';
 
+// Imagens
 import NotAuthenticated from '../../images/svg/not-authenticated.svg';
 
+// Componentes do Bootstrap
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+
+// Componentes locais
 import ModalLogin from '../ModalLogin';
 
 interface ModalProps {

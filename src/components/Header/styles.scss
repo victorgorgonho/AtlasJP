@@ -24,48 +24,74 @@
   }
   
   .navbar-collapse {
-    display: flex !important;
-    justify-content: space-between;
-
-    .profile {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      padding: 4px;
-      
-      img {
-        margin-right: 8px;
-        align-self: center;
-        height: 34px;
+    .content {
+      display: flex !important;
+      width: 100%;
+      justify-content: space-between !important;
+  
+      .profile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        
+        img {
+          margin-right: 8px;
+          align-self: center;
+          height: 34px;
+        }
+  
+        h3 {
+          font-size: 16px;
+          color: $title;
+          margin-bottom: 0;
+        }
+  
+        &:hover {
+          border-width: 1px;
+          border-radius: 12px;
+          border-color: $border_gray;
+          background-color: $border_gray;
+          opacity: 0.7 !important;
+          cursor: pointer !important;
+        }
       }
-
-      h3 {
-        font-size: 16px;
+  
+      .btn-outline-primary {
         color: $title;
-        margin-bottom: 0;
-      }
-
-      &:hover {
-        border-width: 1px;
-        border-radius: 12px;
-        border-color: $border_gray;
-        background-color: $border_gray;
-        opacity: 0.7 !important;
-        cursor: pointer !important;
-      }
-    }
-
-    .btn-outline-primary {
-      color: $title;
-      border-color: $title;
-      box-shadow: none !important;
-
-      &:hover, &:active {
-        color: $white;
-        background-color: $title;
         border-color: $title;
+        box-shadow: none !important;
+  
+        &:hover, &:active {
+          color: $white;
+          background-color: $title;
+          border-color: $title;
+        }
       }
     }
+  }
+}
+
+@media(max-width: 990px) {
+  #homepage .content {
+    align-items: center;
+    text-align: center;
+  }
+
+  #homepage .content header {
+    margin: 48px auto 0;
+  }
+
+  #homepage .content main {
+    align-items: center;
+  }
+
+  #homepage .content main h1 {
+    font-size: 42px;
+  }
+
+  #homepage .content main p {
+    font-size: 24px;
   }
 }

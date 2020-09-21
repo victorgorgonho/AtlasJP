@@ -52,6 +52,11 @@
         margin: 0;
         border-top: 1px dotted #f2f3f5;
         padding: 8px !important;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        word-break: break-word;
   
         h3 {
           font-size: 24px;
@@ -68,11 +73,57 @@
   }
 }
 
-/* 
-  width: '100%',
-  borderWidth: 0.6,
-  borderColor: '#A6BECF',
-  borderRadius: 8,
-  marginBottom: 10,
-  padding: 8,
-*/
+@media(max-width: 460px) {
+  .modal-content .content .col .row:first-of-type .profile.col-3 {
+    justify-content: center;
+  }
+
+  .modal-content .content .col .row:first-of-type .profile.col-3 img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .modal-content .content .col .row:first-of-type .col-9 .message-header.row h3:first-of-type {
+    font-size: 20px;
+  }
+
+  .modal-content .content .col .row:first-of-type .col-9 .message-header.row h3:last-of-type {
+    font-size: 12px;
+  }
+
+  .modal-content .content .col .message-body.row h3 {
+    font-size: 20px;
+  }
+}
+
+@media(max-width: 340px) {
+  .modal-content .content .col .row:first-of-type .col-9 .message-header.row h3:first-of-type {
+    font-size: 18px;
+  }
+
+  .modal-content .content .col .row:first-of-type .col-9 .message-header.row h3:last-of-type {
+    font-size: 10px;
+  }
+
+  .modal-content .content .col .message-body.row h3 {
+    font-size: 18px;
+  }
+}
+
+@media(max-width: 300px) {
+  .modal-content .content .col .row:first-of-type .col-9 .message-header.row {
+    padding: 15px 0 10px 0;
+  }
+
+  .modal-content .content .col .row:first-of-type .col-9 .message-header.row h3:first-of-type {
+    font-size: 16px;
+  }
+
+  .modal-content .content .col .row:first-of-type .col-9 .message-header.row h3:last-of-type {
+    font-size: 9px;
+  }
+
+  .modal-content .content .col .message-body.row h3 {
+    font-size: 16px;
+  }
+}

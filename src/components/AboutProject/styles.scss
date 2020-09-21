@@ -55,8 +55,9 @@
       z-index: 1;
 
       img {
-        width: 580px;
-        height: 580px;
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
       }
     }
   }
@@ -78,7 +79,7 @@
   }
 }
 
-@media(max-width: 900px) {
+@media(max-width: 990px) {
   #homepage .content {
     align-items: center;
     text-align: center;
@@ -98,5 +99,20 @@
 
   #homepage .content main p {
     font-size: 24px;
+  }
+
+  #homepage .content .content-text {
+    width: 100%;
+  }
+
+  #homepage .content .content-img {
+    display: none;
+  }
+
+  #homepage .footer {
+    align-items: center;
+    padding-bottom: 20px;
+    padding-top: 0;
+    padding-right: 0;
   }
 }

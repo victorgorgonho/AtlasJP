@@ -2,16 +2,23 @@ import React, { useState, useEffect } from 'react';
 
 import './styles.scss';
 
+// Imagens
 import Question from '../../images/svg/question.svg';
 import Map from '../../images/svg/map.svg';
 
+// Funções
 import { isAuthenticated } from '../../services/auth';
 import { useSelector, RootStateOrAny } from 'react-redux';
 import { useSnackbar } from 'notistack';
+
+// Tipos
 import { Neighborhood } from '../../store/ducks/neighborhood/types';
 
+// Componentes do Bootstrap
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+
+// Componentes locais
 import ModalFeedback from '../ModalFeedback';
 import ModalNotAllowed from '../ModalNotAllowed';
 import Footer from '../Footer';
@@ -36,6 +43,7 @@ const SendMessage: React.FC = () => {
 
   const scrollToMap = () => document.querySelector('#map')?.scrollIntoView({ behavior: 'smooth' });
 
+  // Confere se usuário está autenticado e exibe modal adequado
   const showModal = () => {
     const isLogged = isAuthenticated();
 
@@ -62,38 +70,46 @@ const SendMessage: React.FC = () => {
         </div>
         <div className="content">
           {neighborhood && neighborhood.image_url ?
-            <div className="content-left">
-              <div className="content-img">
-                <img src={neighborhood.image_url} alt={neighborhood.name} />
-              </div>
-              <Form>
-                <Form.Group controlId="Form.ControlTextarea1">
-                  <Form.Label>Que feedback gostaria de deixar sobre o bairro?</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={4}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                  />
-                  <div className="btn-justify">
-                    <Button variant="outline-danger" onClick={scrollToMap}>
-                      Voltar
+
+            /* Se o bairro tiver sido selecionado, exibe imagem + formulário  */
+            <div className="container-left">
+              <div className="content-left">
+                <div className="content-img">
+                  <img src={neighborhood.image_url} alt={neighborhood.name} />
+                </div>
+                <Form>
+                  <Form.Group controlId="Form.ControlTextarea1">
+                    <Form.Label>Que feedback gostaria de deixar sobre o bairro?</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows={4}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
+                    <div className="btn-justify">
+                      <Button variant="outline-danger" onClick={scrollToMap}>
+                        Voltar
+                      </Button>
+                      <Button variant="outline-primary" onClick={showModal}>
+                        Enviar
                     </Button>
-                    <Button variant="outline-primary" onClick={showModal}>
-                      Enviar
-                  </Button>
-                  </div>
-                </Form.Group>
-              </Form>
+                    </div>
+                  </Form.Group>
+                </Form>
+              </div>
             </div>
+
             :
+
+            /* Se não, exibe imagem padrão */
             <div className="no-content">
               <img id="no-img" src={Question} alt="Bairro não selecionado" />
             </div>
           }
 
+          {/* Renderiza imagem da direita se bairro tiver sido selecionado */}
           {neighborhood.name !== '' &&
-            <div className="content-right">
+            <div className="container-right">
               <img src={Map} alt="Map" />
             </div>
           }

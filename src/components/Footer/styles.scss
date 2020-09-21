@@ -42,3 +42,14 @@
     right: 0;
   }
 }
+
+@media(max-width: 780px) {
+  #footer {
+    flex-direction: column;
+  }
+
+  #footer .footer-end {
+    position: relative;
+    padding-right: 0;
+  }
+}

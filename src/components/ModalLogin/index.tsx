@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 
 import './styles.scss';
 
+// Imagens
 import AuthIMG from '../../images/svg/authentication.svg';
 
+// Funções
 import { checkAuth } from '../../services/validation';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { updateUser } from '../../store/ducks/user/actions';
 
+// Componentes do Bootstrap
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -26,6 +29,7 @@ const ModalLogin: React.FC<ModalProps> = (props) => {
   const [password, setPassword] = useState('');
 
   const signIn = () => {
+    // Cria usuário padrão
     const user = {
       id: '1',
       email: email.trim(),
@@ -33,7 +37,10 @@ const ModalLogin: React.FC<ModalProps> = (props) => {
       token: 'Logado'
     };
 
+    // Checa se o e-mail é válido
     const isEmailValid = checkAuth('email', email.trim());
+
+    // Checa se a autenticação está correta (login estático setado na função)
     const isValidated = checkAuth('auth', {
       email: email.trim(),
       password

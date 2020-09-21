@@ -2,6 +2,7 @@ import React from 'react';
 
 import './styles.scss';
 
+// Imagens
 import logo from '../../images/svg/home-map.svg';
 import goDown from '../../images/gif/arrow-down.gif';
 
